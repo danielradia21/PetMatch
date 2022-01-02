@@ -1,0 +1,41 @@
+.main-home-page {
+  display: flex;
+  justify-content: center;
+
+  .main-profile {
+    margin-top: 20px;
+    height: 800px;
+    width: 550px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    .img-container {
+      border: 1px solid black;
+      width: 400px;
+      height: 400px;
+      border-radius: 25px;
+      padding: 15px;
+    }
+    .user-info {
+      border: 1px solid black;
+      height: 200px;
+      width: 400px;
+      border-radius: 25px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .btns-container {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .user-name {
+      font-size: 28px;
+    }
+  }
+}
