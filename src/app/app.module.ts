@@ -4,13 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './cmps/app-header/app-header.component';
 import { AppHomeComponent } from './pages/app-home/app-home.component';
-import { AppLoginComponent } from './cmps/app-login/app-login.component';
 import { AppFooterComponent } from './cmps/app-footer/app-footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB7a_feWtkak89PZVSlm9HyoW1SMA1sdpk',
@@ -31,8 +32,10 @@ const analytics = getAnalytics(app);
     AppComponent,
     AppHeaderComponent,
     AppHomeComponent,
-    AppLoginComponent,
+
     AppFooterComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
