@@ -28,3 +28,22 @@
     }
   }
 }
+
+input {
+  transition: 0.4s;
+  outline: none;
+  border-radius: 2px;
+  border: 1px solid;
+}
+input.ng-invalid.ng-touched {
+  // box-shadow:-5px 0px 0px 0px red;
+  border: 4px solid tomato;
+}
+
+input.ng-valid[required] {
+  border: 4px solid lightgreen;
+}
+
+.errors {
+  color: red;
+}

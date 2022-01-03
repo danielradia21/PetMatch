@@ -12,6 +12,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserPageComponent } from './pages/user/user-page/user-page.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB7a_feWtkak89PZVSlm9HyoW1SMA1sdpk',
@@ -36,9 +38,11 @@ const analytics = getAnalytics(app);
     AppFooterComponent,
     LoginComponent,
     SignupComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AppRoutingModule,

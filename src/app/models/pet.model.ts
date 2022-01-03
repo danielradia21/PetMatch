@@ -11,3 +11,11 @@ export interface Pet {
   color: string;
   race: string;
 }
+
+// random pet name
+// random animal description
+// url breed imgs
+// random age arr
+// size arr
+// color arr
+// breed arr
