@@ -14,13 +14,15 @@ export class UserService {
     private http: HttpClient,
     private firebaseService: FirebaseService
   ) {}
-  createUser() :User{
-    let user:User = this.getEmptyUser();
-    let randUser = this.http.get<{ results: randApi[] }>('https://randomuser.me/api/?inc=gender,name,location,email,dob,picture,login')
+  createUser(): User {
+    let user: User = this.getEmptyUser();
+    let randUser = this.http
+      .get<{ results: randApi[] }>(
+        'https://randomuser.me/api/?inc=gender,name,location,email,dob,picture,login'
+      )
       .pipe(map((res) => res.results[0]));
 
     randUser.subscribe((newUser) => {
-      
       user.gender = newUser.gender;
       user.fullname = `${newUser.name.first} ${newUser.name.last}`;
       user.birthdate = newUser.dob.date;
@@ -32,18 +34,27 @@ export class UserService {
       user.location.lat = newUser.location.coordinates.latitude;
       user.location.lng = newUser.location.coordinates.longitude;
       user.imgURLs = newUser.picture.large;
-      console.log(newUser)
-      user.password = newUser.login.password
-      user.joinedAt = Date.now()+ ''
-          // this.firebaseService.addItem(user)
+      console.log(newUser);
+      user.password = newUser.login.password;
+      user.joinedAt = Date.now() + '';
+      // this.firebaseService.addItem(user)
     });
 
     return user;
   }
 
-  getEmptyUser():User{
+  newUser(uid: string, email: string,fullname:string) {
+    let user = this.getEmptyUser();
+    user.uid = uid;
+    user.email = email;
+    user.fullname = fullname
+    this.firebaseService.addNewUser(user);
+  }
+
+  getEmptyUser(): User {
     return {
       // _id: '',
+      uid: '',
       gender: '',
       fullname: '',
       birthdate: '',
@@ -62,34 +73,33 @@ export class UserService {
         animal: '',
         city: '',
       },
+    };
   }
 }
-}
 
-  // info:string
-  //   private _usersDb:User[] = [{
-  //     _id,
-  //   fullname,
-  //   gender,
-  //   birthdate,
-  //   email,
-  //   password,
-  //   location: {
-  //     address:
-  //     lat:
-  //     lng:
-  //   }
-  //   imgURLs: []
-  //   joinedAt:
-  //   prefs: {
-  //     age:
-  //     gender:
-  //     animal:
-  //     city:
-  //   };
-  //   favourites:
-  //   adoptions:
-  //   listings:
-  //   }]
-  // }
-
+// info:string
+//   private _usersDb:User[] = [{
+//     _id,
+//   fullname,
+//   gender,
+//   birthdate,
+//   email,
+//   password,
+//   location: {
+//     address:
+//     lat:
+//     lng:
+//   }
+//   imgURLs: []
+//   joinedAt:
+//   prefs: {
+//     age:
+//     gender:
+//     animal:
+//     city:
+//   };
+//   favourites:
+//   adoptions:
+//   listings:
+//   }]
+// }

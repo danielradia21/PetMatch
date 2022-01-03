@@ -15,6 +15,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserPageComponent } from './pages/user/user-page/user-page.component';
 
+
 const firebaseConfig = {
   apiKey: 'AIzaSyB7a_feWtkak89PZVSlm9HyoW1SMA1sdpk',
   authDomain: 'petmatch-c4cce.firebaseapp.com',
