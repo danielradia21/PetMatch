@@ -1,0 +1,43 @@
+<section class="signup-page">
+
+    <form class="signup-form">
+        <div class="input-field">
+            <label for="name">Full Name</label>
+            <input type="text">
+        </div>
+        <!-- input [(ngModel)]="user.name" 2 way bind -->
+        <!-- input [ngModel]="user.birthdate|date'yyyy-mm-dd'"   (ngModelChange)="user.birthdate" -->
+        <div class="input-field">
+            <label for="birthdate">Birthdate</label>
+            <input type="date">
+        </div>
+        <div class="input-field">
+            <label for="email">Email</label>
+            <input type="email">
+        </div>
+
+        <div class="input-field">
+            <label for="password">Password</label>
+            <input type="password">
+        </div>
+        <div class="radio-btns">
+            <div>
+                <input type="radio" id="male" name="gender" value="huey" checked>
+                <label for="male">Male</label>
+            </div>
+            <div>
+                <input type="radio" id="female" name="gender" value="dewey">
+                <label for="female">Female</label>
+            </div>
+            <div>
+                <input type="radio" id="other" name="gender" value="louie">
+                <label for="other">Other</label>
+            </div>
+        </div>
+        <button>Signup</button>
+    </form>
+
+    <div>Or</div>
+
+    <h1>google auth</h1>
+</section>
