@@ -12,11 +12,8 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
-    if(!form.value.email ||!form.value.fullname || !form.value.password){
-      console.log('we have a problem');
-      return    
-    }
     console.log('form value', form.value);
-    form.reset()
+    
+    form.reset();
   }
 }

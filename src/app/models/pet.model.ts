@@ -9,13 +9,15 @@ export interface Pet {
   city: string;
   size: string;
   color: string;
-  race: string;
+  breed: string;
 }
+
+
 
 // random pet name
 // random animal description
 // url breed imgs
+// breed arr
 // random age arr
 // size arr
 // color arr
-// breed arr

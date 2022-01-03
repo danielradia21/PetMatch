@@ -9,12 +9,12 @@
         <div class="input-field">
             <label for="email">Email</label>
             <input ngModel type="email" name="email" placeholder="Email" required email #email="ngModel">
-                <p class="errors"  *ngIf="email.invalid&&email.touched">Error in Email </p>
+            <p class="errors" *ngIf="email.invalid&&email.touched">Error in Email </p>
         </div>
         <div class="input-field">
             <label for="password">Password</label>
             <input ngModel type="password" name="password" placeholder="Password" required #password="ngModel">
-                <p class="errors"  *ngIf="password.invalid&&password.touched">Error in Password </p>
+            <p class="errors" *ngIf="password.invalid&&password.touched">Error in Password </p>
         </div>
         <button [disabled]="form.invalid">Signup</button>
     </form>
