@@ -35,7 +35,7 @@ export class UserService {
       console.log(newUser)
       user.password = newUser.login.password
       user.joinedAt = Date.now()+ ''
-          this.firebaseService.addItem(user)
+          // this.firebaseService.addItem(user)
     });
 
     return user;

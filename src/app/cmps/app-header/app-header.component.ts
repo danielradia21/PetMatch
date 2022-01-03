@@ -17,7 +17,6 @@ export class AppHeaderComponent implements OnInit {
   ngOnInit(): void {
    let user = this.userService.createUser();
    console.log("file: app-header.component.ts ~ line 19 ~ AppHeaderComponent ~ user", user)
-   console.log(this.firebaseService.getItems())
    let users
     // console.log("file: app-header.component.ts ~ line 18 ~ AppHeaderComponent ~ result", this.result$)
       this.firebaseService.getItems().snapshotChanges().pipe(
