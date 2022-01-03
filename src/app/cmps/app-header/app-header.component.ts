@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user/users.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 @Component({
@@ -17,8 +17,19 @@ export class AppHeaderComponent implements OnInit {
   ngOnInit(): void {
    let user = this.userService.createUser();
    console.log("file: app-header.component.ts ~ line 19 ~ AppHeaderComponent ~ user", user)
+   console.log(this.firebaseService.getItems())
+   let users
     // console.log("file: app-header.component.ts ~ line 18 ~ AppHeaderComponent ~ result", this.result$)
-    
+      this.firebaseService.getItems().snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c =>
+            ({ _id: c.payload.doc.id, ...c.payload.doc.data() })
+          )
+        )
+      ).subscribe(data => {
+        users = data;
+        console.log(users)
+      });
     // this.firebaseService.addItem(user);
   }
 }

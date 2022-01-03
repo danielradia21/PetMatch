@@ -11,12 +11,31 @@ import {
   providedIn: 'root',
 })
 export class FirebaseService {
-  public userCollection: AngularFirestoreCollection<User>;
+  public usersRef: AngularFirestoreCollection<User>;
+  private dbPath = '/users'
   user$: Observable<User[]>;
-  constructor(firestore: AngularFirestore) {
-    this.userCollection = firestore.collection<User>('users');
+  constructor(private db: AngularFirestore) {
+    this.usersRef = db.collection<User>(this.dbPath);
   }
+
+  // getItems():Observable<User[]>{
+    getItems():AngularFirestoreCollection<User>{
+      console.log(this.usersRef)
+      return this.usersRef
+    // return collectionData(usersRef,{idField:'_id'}) 
+  }
+
   addItem(user: User) {
-    this.userCollection.add(user);
+    this.usersRef.add({...user});
   }
+
+
+  updateItem(id: string, item: any): Promise<void> {
+    return this.usersRef.doc(id).update(item);
+  }
+
+  delete(id: string): Promise<void> {
+    return this.usersRef.doc(id).delete();
+  }
+
 }
