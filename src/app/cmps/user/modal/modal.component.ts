@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 
@@ -9,7 +9,8 @@ import { User } from 'src/app/models/user.model';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() updateUser = new EventEmitter<User>()
+  // @Output() user:User
+  @Output() updateUser = new EventEmitter<User>()
   @Input() user: User
 
   constructor() { }
@@ -18,10 +19,6 @@ export class ModalComponent implements OnInit {
   async onSubmit(form: NgForm) {
     this.updateUser.emit(form.value)
   }
-
-
-
-
 
   ngOnInit(): void {
   }

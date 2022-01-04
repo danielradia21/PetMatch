@@ -15,20 +15,20 @@ export class AppHeaderComponent implements OnInit {
   constructor(private userService: UserService,private firebaseService:FirebaseService) {}
 
   ngOnInit(): void {
-   let user = this.userService.createUser();
-   console.log("file: app-header.component.ts ~ line 19 ~ AppHeaderComponent ~ user", user)
-   let users
-    // console.log("file: app-header.component.ts ~ line 18 ~ AppHeaderComponent ~ result", this.result$)
-      this.firebaseService.getItems().snapshotChanges().pipe(
-        map(changes =>
-          changes.map(c =>
-            ({ _id: c.payload.doc.id, ...c.payload.doc.data() })
-          )
-        )
-      ).subscribe(data => {
-        users = data;
-        console.log(users)
-      });
-    // this.firebaseService.addItem(user);
+  //  let user = this.userService.createUser();
+  //  console.log("file: app-header.component.ts ~ line 19 ~ AppHeaderComponent ~ user", user)
+  //  let users
+  //   // console.log("file: app-header.component.ts ~ line 18 ~ AppHeaderComponent ~ result", this.result$)
+  //     this.firebaseService.getItems().snapshotChanges().pipe(
+  //       map(changes =>
+  //         changes.map(c =>
+  //           ({ _id: c.payload.doc.id, ...c.payload.doc.data() })
+  //         )
+  //       )
+  //     ).subscribe(data => {
+  //       users = data;
+  //       console.log(users)
+  //     });
+  //   // this.firebaseService.addItem(user);
   }
 }
