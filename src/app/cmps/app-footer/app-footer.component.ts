@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppFooterComponent implements OnInit {
 
   constructor() { }
-
+ 
   ngOnInit(): void {
   }
 

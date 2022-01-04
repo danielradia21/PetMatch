@@ -14,22 +14,22 @@ export class AuthService {
     this.signedIn = new Promise((subscriber) => {
       this.auth.onAuthStateChanged(subscriber);
     });
-    // this.usedUser = new Observable((Subscriber)=>{
-    //   Subscriber.next(this.auth.user)
-    //   this.auth.onAuthStateChanged(Subscriber)
+    this.usedUser = new Observable((Subscriber) => {
+      Subscriber.next(this.auth.user)
+      this.auth.onAuthStateChanged(Subscriber)
+    })
+  }
+
+
+  async getUser() {
+    return this.auth.user.subscribe(user => user)
+    // this.usedUser.subscribe(user=>{
+    //   console.log(user)
     // })
   }
 
-  
-
-    async getUser(){
-    return this.auth.user.subscribe(user=>user)
-      // this.usedUser.subscribe(user=>{
-      //   console.log(user)
-      // })
-    }
-    
   async signIn(email: string, password: string) {
+
     try {
       if (!email || !password) throw new Error('Invalid email and/or password');
       await this.auth.signInWithEmailAndPassword(email, password);

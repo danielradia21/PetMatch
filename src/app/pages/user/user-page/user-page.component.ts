@@ -17,30 +17,28 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
     public firebaseService: FirebaseService,
     private authService: AuthService
-    ) {}
-     user: User;
+  ) { }
+  user: User;
 
 
-    async updateUser(formValue:object){
-      this.user = {...this.user,...formValue}
-      this.firebaseService.updateItem(this.user.uid as string,this.user)
-    }
+  async updateUser(formValue: object) {
+    this.user = { ...this.user, ...formValue }
+    this.firebaseService.updateItem(this.user.uid as string, this.user)
+  }
 
-    async signOut(){
-      await this.authService.signOut()
-      this.router.navigateByUrl(`/signup`);
-    }
+  async signOut() {
+    await this.authService.signOut()
+    this.router.navigateByUrl(`/signup`);
+  }
 
   async ngOnInit(): Promise<void> {
     this.route.params.subscribe(({ id }) => {
       this.firebaseService.getById(id).subscribe((item) => {
-      this.user = item as User;
+        this.user = item as User;
       });
 
     });
     let signedUser = await this.authService.getUser()
-    console.log(signedUser)
-    
-    
+
   }
 }
