@@ -17,21 +17,19 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
     public firebaseService: FirebaseService
   ) {}
-
- currUser :User | undefined
-
+  currUser: User | undefined;
+  // toggleEditUserMenu:boolean = true
   async onSubmit(form: NgForm) {
-    let check = {...this.currUser,...form.value}
-    console.log(form.value.prefs.animal);
-    
-    console.log("file: user-page.component.ts ~ line 25 ~ UserPageComponent ~ check", check)
-  }
+    let newUser = { ...this.currUser, ...form.value };
+console.log();
 
+    form.reset();
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(({ id }) => {
       this.firebaseService.getById(id).subscribe((item) => {
-      this.currUser = item;
+        this.currUser = item;
       });
     });
   }
