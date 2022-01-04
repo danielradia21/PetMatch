@@ -1,0 +1,55 @@
+<div class="user-modal">
+    <button class="close-btn">X</button>
+    <h1>Almost there...</h1>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <div class="input-field">
+            <label for="birthdate">Birthdate</label>
+            <input ngModel="birthdate" type="date" name="birthdate" placeholder="Birthdate">
+        </div>
+        <div class="radio-btns">
+            <div>
+                <input ngModel type="radio" id="male" name="gender" value="male" checked>
+                <label for="male">Male</label>
+            </div>
+            <div>
+                <input ngModel type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <div>
+                <input ngModel type="radio" id="other" name="gender" value="other">
+                <label for="other">Other</label>
+            </div>
+        </div>
+
+        <div class="pet-prefs" ngModelGroup="prefs" #prefs="ngModelGroup">
+            <div class="title">Pet Prefs</div>
+            <div>
+                <select ngModel name="age" class="ml-1">
+                    <option value="" disabled>Breed</option>
+                    <option value="0-2">0-2</option>
+                    <option value="2-5">2-5</option>
+                    <option value="5+">5+</option>
+                </select>
+            </div>
+            <div>
+                <select ngModel name="animal" class="ml-1">
+                    <option value="" disabled>Animal</option>
+                    <option value="all">All</option>
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                </select>
+            </div>
+            <div class="radio-btns">
+                <div>
+                    <input ngModel type="radio" id="male" name="pet-gender" value="male" checked>
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input ngModel type="radio" id="female" name="pet-gender" value="female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+        </div>
+        <button class="submit">Submit</button>
+    </form>
+</div>

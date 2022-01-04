@@ -36,17 +36,9 @@ export class AuthService {
   //   }
   // }
 
-  async createUser(
-    fullname: string,
-    email: string,
-    password: string
-  ): Promise<string> {
+  async createUser(fullname: string, email: string, password: string): Promise<string> {
     try {
-      let { user } = await this.auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
+      let { user } = await this.auth.createUserWithEmailAndPassword(email, password)
       await this.userService.newUser(user!.uid, email, fullname);
       return user!.uid;
     } catch (err) {

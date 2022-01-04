@@ -14,6 +14,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserPageComponent } from './pages/user/user-page/user-page.component';
+import { ModalComponent } from './cmps/user/modal/modal.component';
+
 
 
 const firebaseConfig = {
@@ -40,6 +42,8 @@ const analytics = getAnalytics(app);
     LoginComponent,
     SignupComponent,
     UserPageComponent,
+    ModalComponent,
+
   ],
   imports: [
     BrowserModule,
