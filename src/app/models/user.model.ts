@@ -2,6 +2,7 @@ import { Pet } from './pet.model';
 
 export interface User {
   _id?: string;
+  uid?:string;
   fullname: string;
   gender?: string;
   birthdate?: string;
