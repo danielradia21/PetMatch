@@ -34,7 +34,6 @@ export class UserService {
       user.location.lat = newUser.location.coordinates.latitude;
       user.location.lng = newUser.location.coordinates.longitude;
       user.imgURLs = newUser.picture.large;
-      console.log(newUser);
       user.password = newUser.login.password;
       user.joinedAt = Date.now() + '';
       // this.firebaseService.addItem(user)

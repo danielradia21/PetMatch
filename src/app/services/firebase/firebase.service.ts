@@ -29,7 +29,7 @@ export class FirebaseService {
 
   // getItems():Observable<User[]>{
   getItems(): AngularFirestoreCollection<User> {
-    console.log(this.usersRef);
+    // console.log(this.usersRef);
     return this.usersRef;
     // return collectionData(usersRef,{idField:'_id'})
   }

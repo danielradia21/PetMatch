@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom, tap } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 
 @Component({
@@ -11,26 +12,35 @@ import { FirebaseService } from 'src/app/services/firebase/firebase.service';
   styleUrls: ['./user-page.component.scss'],
 })
 export class UserPageComponent implements OnInit {
-  user: User;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public firebaseService: FirebaseService
-  ) {}
-  currUser: User | undefined;
-  // toggleEditUserMenu:boolean = true
-  async onSubmit(form: NgForm) {
-    let newUser = { ...this.currUser, ...form.value };
-console.log();
+    public firebaseService: FirebaseService,
+    private authService: AuthService
+    ) {}
+     user: User;
 
-    form.reset();
-  }
 
-  ngOnInit(): void {
+    async updateUser(formValue:object){
+      this.user = {...this.user,...formValue}
+      this.firebaseService.updateItem(this.user.uid as string,this.user)
+    }
+
+    async signOut(){
+      await this.authService.signOut()
+      this.router.navigateByUrl(`/signup`);
+    }
+
+  async ngOnInit(): Promise<void> {
     this.route.params.subscribe(({ id }) => {
       this.firebaseService.getById(id).subscribe((item) => {
-        this.currUser = item;
+      this.user = item as User;
       });
+
     });
+    let signedUser = await this.authService.getUser()
+    console.log(signedUser)
+    
+    
   }
 }
