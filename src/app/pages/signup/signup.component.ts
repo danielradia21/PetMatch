@@ -13,14 +13,11 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit(form: NgForm) {
-    console.log('form value', form.value);
     let uid = await this.authService.createUser(
       form.value.fullname,
       form.value.email,
       form.value.password
     );
-
-
     this.router.navigateByUrl(`/profile/${uid}`);
     form.reset();
   }

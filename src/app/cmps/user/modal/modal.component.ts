@@ -10,7 +10,7 @@ import { User } from 'src/app/models/user.model';
 export class ModalComponent implements OnInit {
 
   // @Output() user:User
-  @Input() updateUser = new EventEmitter<User>() 
+  @Output() updateUser = new EventEmitter<User>() 
   @Input() user:User
   
   constructor() { }
@@ -19,10 +19,6 @@ export class ModalComponent implements OnInit {
   async onSubmit(form: NgForm) {
       this.updateUser.emit(form.value)
   }
-
-
-
-
 
   ngOnInit(): void {
   }
