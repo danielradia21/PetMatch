@@ -5,7 +5,7 @@ import {
   collection,
   where,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {
   AngularFirestore,
@@ -16,11 +16,13 @@ import {
   providedIn: 'root',
 })
 export class FirebaseService {
+  private itemUid$: Subject<string | null>;
   public usersRef: AngularFirestoreCollection<User>;
   private items: Observable<User[]>;
   private dbPath = '/users';
   user$: Observable<User[]>;
   constructor(private db: AngularFirestore) {
+    this.itemUid$ = new Subject<string | null>();
     this.usersRef = db.collection<User>(this.dbPath);
     this.items = this.usersRef.valueChanges({ idField: 'customID' });
   }
@@ -42,8 +44,7 @@ export class FirebaseService {
   }
 
   getById(id: string) {
-    return this.usersRef.doc(id)
-    ;
+    return this.usersRef.doc(id).valueChanges();
   }
 
   updateItem(id: string, item: any): Promise<void> {

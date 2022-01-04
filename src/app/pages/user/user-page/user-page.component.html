@@ -2,7 +2,7 @@
     <div class="user-modal">
         <button class="close-btn">X</button>
         <h1>Almost there...</h1>
-        <form>
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
             <div class="input-field">
                 <label for="birthdate">Birthdate</label>
                 <input ngModel="birthdate" type="date" name="birthdate" placeholder="Birthdate">
@@ -33,12 +33,12 @@
                     </select>
                 </div>
                 <div>
-                    <label for="animal">All</label>
-                    <input ngModel name="animal" class="mb-2" placeholder="animal" value="All" type="checkbox" />
-                    <label for="animal">Cat</label>
-                    <input ngModel name="animal" class="mb-2" placeholder="animal" value="cat" type="checkbox" />
-                    <label for="animal">Dog</label>
-                    <input ngModel name="animal" class="mb-2" placeholder="animal" value="dogs" type="checkbox" />
+                    <select ngModel name="animal" class="ml-1">
+                        <option value="" disabled>Animal</option>
+                        <option value="all">All</option>
+                        <option value="cat">Cat</option>
+                        <option value="dog">Dog</option>
+                    </select>
                 </div>
                 <div class="radio-btns">
                     <div>
@@ -53,6 +53,7 @@
             </div>
             <button class="submit">Submit</button>
         </form>
+
     </div>
     <div class="user-profile">
     </div>
