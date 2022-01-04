@@ -1,41 +1,44 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { Observable, tap } from 'rxjs';
-import { User } from 'src/app/models/user.model';
+import { Observable, Subscriber, tap } from 'rxjs';
 import { UserService } from '../user/users.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public signedIn: Observable<User | null>;
+  public signedIn: Promise<unknown>;
+  public usedUser: Observable<unknown>
   constructor(public auth: AngularFireAuth, public userService: UserService) {
-    this.signedIn = new Observable((subscriber) => {
+    this.signedIn = new Promise((subscriber) => {
       this.auth.onAuthStateChanged(subscriber);
     });
+    this.usedUser = new Observable((Subscriber) => {
+      Subscriber.next(this.auth.user)
+      this.auth.onAuthStateChanged(Subscriber)
+    })
   }
-
 
 
   async getUser() {
-    return this.signedIn
-
-    // console.log(user)
-
-
-    // return this.signedIn
+    return this.auth.user.subscribe(user => user)
+    // this.usedUser.subscribe(user=>{
+    //   console.log(user)
+    // })
   }
-  // async signIn(email: string, password: string) {
-  //   try {
-  //     if (!email || !password) throw new Error('Invalid email and/or password');
-  //     await this.auth.signInWithEmailAndPassword(email, password);
-  //     return true;
-  //   } catch (error) {
-  //     console.log('Sign in failed', error);
-  //     return false;
-  //   }
-  // }
+
+  async signIn(email: string, password: string) {
+
+    try {
+      if (!email || !password) throw new Error('Invalid email and/or password');
+      await this.auth.signInWithEmailAndPassword(email, password);
+      return true;
+    } catch (error) {
+      console.log('Sign in failed', error);
+      return false;
+    }
+  }
 
   async signOut() {
     try {

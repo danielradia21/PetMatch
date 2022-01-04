@@ -39,11 +39,6 @@ export class UserPageComponent implements OnInit {
 
     });
     let signedUser = await this.authService.getUser()
-    signedUser.subscribe((user) => {
-
-      console.log(user)
-    })
-
 
   }
 }
