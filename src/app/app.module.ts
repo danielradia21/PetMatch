@@ -15,6 +15,8 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserPageComponent } from './pages/user/user-page/user-page.component';
 import { ModalComponent } from './cmps/user/modal/modal.component';
+import { GoogleAuthDirective } from './directives/google-auth.directive';
+import { OrgComponent } from './pages/org/org.component';
 
 
 
@@ -43,6 +45,8 @@ const analytics = getAnalytics(app);
     SignupComponent,
     UserPageComponent,
     ModalComponent,
+    GoogleAuthDirective,
+    OrgComponent,
 
   ],
   imports: [

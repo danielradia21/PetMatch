@@ -40,9 +40,10 @@ export class AuthService {
     }
   }
 
-  async signOut() {
+  async signOut(): Promise<boolean> {
     try {
       await this.auth.signOut();
+      console.log('im out');
       return true;
     } catch (error) {
       console.log('Sign out failed', error);

@@ -1,37 +1,80 @@
-.login-page-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// .login-page-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   .login-page {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     border: 1px solid black;
+//     width: 400px;
+//     margin: 20px 0;
+//     border-radius: 15px;
+//     .login-form {
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       justify-content: space-around;
+//       width: 400px;
+//       height: 350px;
+//       .radio-btns {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         gap: 10px;
+//       }
+//       .input-field {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//         gap: 5px;
+//       }
+//     }
+//   }
+// }
+.login-page {
+  margin: 0 auto;
   flex-direction: column;
-  .login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: 1px solid black;
-    width: 400px;
-    margin: 20px 0;
-    border-radius: 15px;
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      width: 400px;
-      height: 350px;
-      .radio-btns {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-      }
-      .input-field {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-      }
+  width: clamp(200px, 100%, 600px);
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+.input-field {
+  position: relative;
+}
+input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid black;
+  margin-bottom: 35px;
+  color: black;
+  padding-inline-start: 8px;
+  font-size: 18px;
+  &:focus {
+    outline: none;
+    ~ .floating {
+      top: -20px;
+      font-size: 14px;
+      color: black;
     }
   }
+  &:not(:focus):not(:placeholder-shown) {
+    ~ .floating {
+      top: -20px;
+      font-size: 14px;
+      color: black;
+    }
+  }
+}
+.floating {
+  color: rgb(197, 197, 197);
+  position: absolute;
+  pointer-events: none;
+  left: 7px;
+  transition: 0.2s ease-in-out all;
 }

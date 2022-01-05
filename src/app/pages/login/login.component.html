@@ -1,20 +1,21 @@
 <section class="login-page-container">
-  <section class="login-page">
+  <section class="login-page" *ngIf="!(authService.auth.authState | async)">
     <form class="login-form" #form="ngForm" (ngSubmit)="signIn(form)">
       <div class="input-field">
-        <label for="email">Email</label>
-        <input type="email" ngModel name="email" placeholder="Email" />
+        <input type="email" ngModel name="email" placeholder=" " autocomplete="off" />
+        <span class="floating">Email</span>
       </div>
 
       <div class="input-field">
-        <label for="password">Password</label>
-        <input type="password" ngModel name="password" placeholder="Password"/>
+        <input type="password" ngModel name="password" placeholder=" " />
+        <span class="floating">Password</span>
       </div>
       <button>Login</button>
     </form>
 
     <div>Or</div>
 
-    <h1>google auth</h1>
+    <button appGoogleAuth>Google</button>
   </section>
+  <button (click)="authService.signOut()" *ngIf="(authService.auth.authState | async)">Sign out</button>
 </section>

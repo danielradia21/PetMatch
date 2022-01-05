@@ -13,40 +13,45 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private firebaseService: FirebaseService
-  ) {}
-  createUser(): User {
-    let user: User = this.getEmptyUser();
-    let randUser = this.http
-      .get<{ results: randApi[] }>(
-        'https://randomuser.me/api/?inc=gender,name,location,email,dob,picture,login'
-      )
-      .pipe(map((res) => res.results[0]));
+  ) { }
+  // createUser(): User {
+  //   let user: User = this.getEmptyUser();
+  //   let randUser = this.http
+  //     .get<{ results: randApi[] }>(
+  //       'https://randomuser.me/api/?inc=gender,name,location,email,dob,picture,login'
+  //     )
+  //     .pipe(map((res) => res.results[0]));
 
-    randUser.subscribe((newUser) => {
-      user.gender = newUser.gender;
-      user.fullname = `${newUser.name.first} ${newUser.name.last}`;
-      user.birthdate = newUser.dob.date;
-      user.email = newUser.email;
-      user.location.address = `${newUser.location.country} 
-          ${newUser.location.city} 
-          ${newUser.location.street.name} 
-          ${newUser.location.street.number}`;
-      user.location.lat = newUser.location.coordinates.latitude;
-      user.location.lng = newUser.location.coordinates.longitude;
-      user.imgURLs = newUser.picture.large;
-      user.password = newUser.login.password;
-      user.joinedAt = Date.now() + '';
-      // this.firebaseService.addItem(user)
-    });
+  //   randUser.subscribe((newUser) => {
+  //     user.gender = newUser.gender;
+  //     user.fullname = `${newUser.name.first} ${newUser.name.last}`;
+  //     user.birthdate = newUser.dob.date;
+  //     user.email = newUser.email;
+  //     user.location.address = `${newUser.location.country} 
+  //         ${newUser.location.city} 
+  //         ${newUser.location.street.name} 
+  //         ${newUser.location.street.number}`;
+  //     user.location.lat = newUser.location.coordinates.latitude;
+  //     user.location.lng = newUser.location.coordinates.longitude;
+  //     user.imgURLs = newUser.picture.large;
+  //     user.password = newUser.login.password;
+  //     user.joinedAt = Date.now() + '';
+  //     // this.firebaseService.addItem(user)
+  //   });
 
-    return user;
-  }
+  //   return user;
+  // }
 
-  newUser(uid: string, email: string,fullname:string) {
+  newUser(uid: string, email: string | null, fullname: string | null) {
     let user = this.getEmptyUser();
     user.uid = uid;
-    user.email = email;
-    user.fullname = fullname
+    if (!fullname) {
+      user.fullname = 'Guest'
+    } else {
+      user.fullname = fullname
+    }
+    if (!email) throw new Error('No valid email') /// SOMEONE NEEDS TO CATCH THIS ERROR AND HANDLE IT
+    else user.email = email;
     this.firebaseService.addNewUser(user);
   }
 
