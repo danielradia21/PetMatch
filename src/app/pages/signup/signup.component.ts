@@ -11,7 +11,7 @@ export class SignupComponent implements OnInit {
   constructor(public authService: AuthService, public router: Router) {}
 
   ngOnInit(): void {}
-
+ 
   async onSubmit(form: NgForm) {
     let uid = await this.authService.createUser(
       form.value.fullname,
