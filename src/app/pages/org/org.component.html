@@ -9,6 +9,7 @@
             placeholder=" "
             required
             #name="ngModel"
+            autocomplete="off"
             />
             <span class="floating">Name</span>
         </div>
@@ -20,6 +21,7 @@
             placeholder=" "
             required
             #description="ngModel"
+            autocomplete="off"
             />
             <span class="floating">Description</span>
         </div>
@@ -31,28 +33,29 @@
             placeholder=" "
             required
             #location="ngModel"
+            autocomplete="off"
             />
             <span class="floating">Location</span>
         </div>
         <div class="org-contact" ngModelGroup="contact" #prefs="ngModelGroup">
             <div class="input-field">
-                <input ngModel type="text" name="phone" placeholder=" " required #contact.phone="ngModel"/>
+                <input ngModel type="text" name="phone" placeholder=" " required #contact.phone="ngModel" autocomplete="off"/>
                 <span class="floating">Phone</span>
             </div>
             <div class="input-field">
-                <input ngModel type="email" name="email" placeholder=" " required #contact.email="ngModel">
+                <input ngModel type="email" name="email" placeholder=" " required #contact.email="ngModel" autocomplete="off"/>
                 <span class="floating">Email</span>
             </div>
             <div class="input-field">
-                <input ngModel type="text" name="website" placeholder=" " #contact.website="ngModel" >
+                <input ngModel type="text" name="website" placeholder=" " #contact.website="ngModel" autocomplete="off"/>
                 <span class="floating">Website</span>
             </div>
             <div class="input-field">
-                <input ngModel type="text" name="twitter" placeholder=" " #contact.twitter="ngModel">
+                <input ngModel type="text" name="twitter" placeholder=" " #contact.twitter="ngModel" autocomplete="off"/>
                 <span class="floating">Twitter</span>
             </div>
             <div class="input-field">
-                <input ngModel type="text" name="facebook" placeholder=" " #contact.facebook="ngModel">
+                <input ngModel type="text" name="facebook" placeholder=" " #contact.facebook="ngModel" autocomplete="off"/>
                 <span class="floating">Facebook</span>
             </div>
         </div>
