@@ -1,1 +1,69 @@
-<p>add-pet works!</p>
+<section>
+    <form>
+        <div>
+            <label>Pet Name : </label>
+            <input type="text">
+        </div>
+        <div>
+            <label>Pet Description : </label>
+            <input type="text">
+        </div>
+        <div>
+            <h1>img upload</h1>
+        </div>
+        <div>
+            <label>Pet Age (Years) </label>
+            <select>
+                <option value="0-2">0-2</option>
+                <option value="2-5">2-5</option>
+                <option value="5+">5+</option>
+            </select>
+        </div>
+
+        <div class="radio-btns">
+            <label>Gender</label>
+            <div>
+                <input ngModel type="radio" id="male" name="gender" value="male" checked>
+                <label for="male">Male</label>
+            </div>
+            <div>
+                <input ngModel type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+        </div>
+        <div>
+            <label>Pet Type : </label>
+            <select>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+            </select>
+        </div>
+        <div>
+            <label>Pet Size : </label>
+            <select>
+                <option value="mini">Mini: these tinies weigh from 12 to fewer pounds.</option>
+                <option value="small">Small: weigh 12-24 lbs. </option>
+                <option value="med">Medium: weigh from 24 to 57 pounds </option>
+                <option value="large">Large: weigh from around 59 up to 99 pounds.</option>
+            </select>
+        </div>
+        <div>
+            <label>Pet Color : </label>
+            <select>
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="gold">Golden</option>
+                <option value="gray">Gray</option>
+                <option value="multi">Multicolor</option>
+            </select>
+        </div>
+        <div>
+            <form [formGroup]="myForm">
+            <ng-multiselect-dropdown name="city" [placeholder]="'Select City'" [data]="cities" formControlName="city"
+                [settings]="dropdownSettings" (onSelect)="onItemSelect($event)">
+            </ng-multiselect-dropdown>
+        </form>
+        </div>
+
+    </form>
+</section>
