@@ -5,7 +5,7 @@ import {
   collection,
   where,
 } from '@angular/fire/firestore';
-import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, first, map, Observable, pipe, Subject, tap } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {
   AngularFirestore,
@@ -42,7 +42,7 @@ export class FirebaseService {
     this.orgsRef = db.collection<Org>(this.orgDbPath);
     // this.orgsRef = db.collection<Org>(this.dbOrgPath)
     this.users = this.userRef.valueChanges({ idField: 'customID' });
-    // this.orgs = this.orgsRef.valueChanges({idField:'customID'})
+    this.orgs = this.orgsRef.valueChanges({ idField: 'customID' });
   }
 
   // getItems():Observable<User[]>{
@@ -61,23 +61,10 @@ export class FirebaseService {
 
   addOrg(org: Org) {
     this.orgsRef.add({ ...org });
-    // let uid:string|undefined
-    let user = this.afs.getUser()
-    user.subscribe(value => this.getById(value!.uid))
-    
-    
-    // let unsubscribe = this.afs.getUser().pipe(map((currUser) => user = this.getById(currUser!.uid)));
-    // console.log(unsubscribe);
-
-    // .subscribe(currUser=>{
-    //   user = this.getById(currUser!.uid)
-    //   user.subscribe(currUserA=>{
-    //     console.log(currUserA)
-    //   })
-    // })
-
-    // let id = currUser.id
-    // this.userRef.doc(currUser.id).update()
+    let user = this.afs.getUser().pipe(first()).subscribe((value) => {
+    this.userRef.doc(`${value!.uid}/orgs`).update(org._id)
+    })
+    // console.log(this.afs.getUser());
   }
   // addItem(type:keyof refs,item:User|Org):Psromise<any> {
 
@@ -86,14 +73,17 @@ export class FirebaseService {
   // addItem(user: User) {
   //   this.usersRef.add({ ...user });
   // }
-  getById(id: string) {
-    return this.userRef.doc(id).valueChanges();
+  getById(type: string, id: string) {
+    if (type === 'user') return this.userRef.doc(id).valueChanges();
+    else return this.orgsRef.doc(id);
   }
-  updateItem(id: string, item: any): Promise<void> {
-    return this.userRef.doc(id).update(item);
+  updateItem(type: string, id: string, item: User | Org): Promise<void> {
+    if (type === 'user') return this.userRef.doc(id).update(item as User);
+    return this.orgsRef.doc(id).update(item as Org);
   }
-  delete(id: string): Promise<void> {
-    return this.userRef.doc(id).delete();
+  delete(type: string, id: string): Promise<void> {
+    if (type === 'user') return this.userRef.doc(id).delete();
+    return this.orgsRef.doc(id).delete();
   }
 
   /// ORG FIREBASE CRUD, COMBINE LATER FOR A GENERIC CODE MARKUP
