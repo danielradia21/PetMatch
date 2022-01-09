@@ -58,11 +58,20 @@
             </select>
         </div>
         <div>
-            <form [formGroup]="myForm">
-            <ng-multiselect-dropdown name="city" [placeholder]="'Select City'" [data]="cities" formControlName="city"
+            <!-- <form [formGroup]="myForm">
+            <ng-multiselect-dropdown  [placeholder]="'Select City'" [data]="cities" [(ngModel)]="selectedItems"
                 [settings]="dropdownSettings" (onSelect)="onItemSelect($event)">
             </ng-multiselect-dropdown>
-        </form>
+        </form> -->
+        <ng-multiselect-dropdown
+            [placeholder]="'Select breeds'"
+            [settings]="dropdownSettings"
+            [data]="animals"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
         </div>
 
     </form>

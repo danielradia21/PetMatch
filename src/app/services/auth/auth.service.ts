@@ -11,17 +11,20 @@ export class AuthService {
   public signedIn: Promise<unknown>;
   public usedUser: Observable<unknown>
   constructor(public auth: AngularFireAuth, public userService: UserService) {
-    this.signedIn = new Promise((subscriber) => {
-      this.auth.onAuthStateChanged(subscriber);
-    });
-    this.usedUser = new Observable((Subscriber) => {
-      Subscriber.next(this.auth.user)
-      this.auth.onAuthStateChanged(Subscriber)
-    })
+    // this.signedIn = new Promise((subscriber) => {
+    //   this.auth.onAuthStateChanged(subscriber);
+    // });
+    // this.usedUser = new Observable((Subscriber) => {
+    //   Subscriber.next(this.auth.user)
+    //   this.auth.onAuthStateChanged(Subscriber)
+    // })
   }
 
 
   async getUser() {
+   this.auth.user.subscribe(user => {
+     console.log(user)
+    })
     return this.auth.user.subscribe(user => user)
     // this.usedUser.subscribe(user=>{
     //   console.log(user)

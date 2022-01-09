@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-// import { animals } from 'src/app/models/pet.model';
+import { animals } from 'src/app/models/pet.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
+
+
 @Component({
   selector: 'app-add-pet',
   templateUrl: './add-pet.component.html',
@@ -9,38 +13,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AddPetComponent implements OnInit {
   myForm: FormGroup;
   disabled = false;
-  ShowFilter = false;
+  ShowFilter = true;
   limitSelection = false;
-  cities: Array<object> = [];
+  animals: Array<string> = [];
   selectedItems: Array<object> = [];
-  dropdownSettings: any = {};
+  dropdownSettings:IDropdownSettings = {};
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.cities = [
-      { item_id: 1, item_text: 'New Delhi' },
-      { item_id: 2, item_text: 'Mumbai' },
-      { item_id: 3, item_text: 'Bangalore' },
-      { item_id: 4, item_text: 'Pune' },
-      { item_id: 5, item_text: 'Chennai' },
-      { item_id: 6, item_text: 'Navsari' },
-    ];
-    this.selectedItems = [
-      { item_id: 4, item_text: 'Pune' },
-      { item_id: 6, item_text: 'Navsari' },
-    ];
+  ngOnInit() {
+    this.animals = [...animals];
+    // this.selectedItems = [...user.prefs.breeds];
+    this.selectedItems=[]
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'text',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit:10,
       allowSearchFilter: this.ShowFilter,
     };
-    this.myForm = this.fb.group({
-      city: [this.selectedItems],
-    });
+
+    // this.myForm = this.fb.group({
+    //   city: [this.selectedItems],
+    // });
   }
 
   onItemSelect(item: any) {
@@ -49,22 +45,22 @@ export class AddPetComponent implements OnInit {
   onSelectAll(items: any) {
     console.log('onSelectAll', items);
   }
-  toogleShowFilter() {
-    this.ShowFilter = !this.ShowFilter;
-    this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
-      allowSearchFilter: this.ShowFilter,
-    });
-  }
+  // toogleShowFilter() {
+  //   this.ShowFilter = !this.ShowFilter;
+  //   this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
+  //     allowSearchFilter: this.ShowFilter,
+  //   });
+  // }
 
-  handleLimitSelection() {
-    if (this.limitSelection) {
-      this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
-        limitSelection: 2,
-      });
-    } else {
-      this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
-        limitSelection: null,
-      });
-    }
-  }
+  // handleLimitSelection() {
+  //   if (this.limitSelection) {
+  //     this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
+  //       limitSelection: 2,
+  //     });
+  //   } else {
+  //     this.dropdownSettings = Object.assign({}, this.dropdownSettings, {
+  //       limitSelection: null,
+  //     });
+  //   }
+  // }
 }

@@ -39,6 +39,7 @@ export class UserPageComponent implements OnInit {
 
     });
     let signedUser = await this.authService.getUser()
+    console.log(signedUser)
 
   }
 }
