@@ -8,15 +8,9 @@ import { UserService } from '../user/users.service';
   providedIn: 'root',
 })
 export class AuthService {
-<<<<<<< HEAD
   public signedIn: Promise<unknown>;
   public usedUser: Observable<unknown>
   constructor(public auth: AngularFireAuth) {
-=======
-//   public signedIn: Promise<unknown>;
-//   public usedUser: Observable<unknown>
-  constructor(public auth: AngularFireAuth, public userService: UserService) {
->>>>>>> b98b0deb8f8e53c5ed8aa3503800d40cc9beac14
     // this.signedIn = new Promise((subscriber) => {
     //   this.auth.onAuthStateChanged(subscriber);
     // });
