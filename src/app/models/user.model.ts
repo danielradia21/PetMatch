@@ -21,6 +21,7 @@ export interface User {
     animal: string;
     city: string;
   };
+  orgs?: object[]
   favourites?: Array<Pet>;
   adoptions?: Array<Pet>;
   listings?: Array<Pet>;

@@ -12,5 +12,8 @@ export class OrgService {
   newOrg(org: Org) {
     this.firebaseService.addOrg(org)
   }
+  getOrgById(id: string) {
+    return this.firebaseService.getOrgById(id)
+  }
 }
 

@@ -18,6 +18,7 @@ import { ModalComponent } from './cmps/user/modal/modal.component';
 import { GoogleAuthDirective } from './directives/google-auth.directive';
 import { OrgComponent } from './pages/org/org.component';
 import { AddPetComponent } from './cmps/add-pet/add-pet/add-pet.component';
+import { OrgDashboardComponent } from './pages/org-dashboard/org-dashboard/org-dashboard.component';
 
 
 
@@ -49,6 +50,7 @@ const analytics = getAnalytics(app);
     GoogleAuthDirective,
     OrgComponent,
     AddPetComponent,
+    OrgDashboardComponent,
 
   ],
   imports: [
