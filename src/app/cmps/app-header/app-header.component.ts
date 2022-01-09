@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user/users.service';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
@@ -12,9 +13,11 @@ export class AppHeaderComponent implements OnInit {
   // info$: Observable<object> | Promise<string>;
   result: any;
   result$: Observable<any>;
-  constructor(private userService: UserService,private firebaseService:FirebaseService) {}
+  constructor(private userService: UserService,private firebaseService:FirebaseService,private af:AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.af.getUser()
+  
   //  let user = this.userService.createUser();
   //  console.log("file: app-header.component.ts ~ line 19 ~ AppHeaderComponent ~ user", user)
   //  let users

@@ -22,6 +22,9 @@ export class AuthService {
 
 
   async getUser() {
+   this.auth.user.subscribe(user => {
+     console.log(user)
+    })
     return this.auth.user.subscribe(user => user)
     // this.usedUser.subscribe(user=>{
     //   console.log(user)

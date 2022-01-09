@@ -36,6 +36,12 @@ export class UserPageComponent implements OnInit {
       });
 
     });
+<<<<<<< HEAD
     let signedUser = await this.authService.getUser()    
+=======
+    let signedUser = await this.authService.getUser()
+    console.log(signedUser)
+
+>>>>>>> 64e2297ea2473e73431ee8d677f758f9ceca9439
   }
 }
