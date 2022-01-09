@@ -15,6 +15,6 @@ export class OrgService {
     return this.firebaseService.getOrgById(id);
   }
   updateOrg(_id: string, org: Org) {
-    this.firebaseService.updateItem(_id, org);
+    this.firebaseService.updateItem('org',_id, org);
   }
 }

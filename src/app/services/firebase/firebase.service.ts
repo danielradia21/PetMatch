@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Injectable, Type } from '@angular/core';
 import {
   Firestore,
@@ -6,9 +5,6 @@ import {
   collection,
   where,
 } from '@angular/fire/firestore';
-=======
-import { Injectable } from '@angular/core';
->>>>>>> b98b0deb8f8e53c5ed8aa3503800d40cc9beac14
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {
@@ -28,7 +24,6 @@ export class FirebaseService {
   private itemUid$: Subject<string | null>;
   private userRef: AngularFirestoreCollection<User>;
   private orgsRef: AngularFirestoreCollection<Org>
-<<<<<<< HEAD
   // private refs:refs
 
   
@@ -41,11 +36,6 @@ export class FirebaseService {
   private orgs:Observable<Org[]>
   private userDbPath = '/users';
   private orgDbPath = '/orgs'
-=======
-  private items: Observable<User[]>;
-  private dbPath = '/users';
-  private dbOrgPath = '/orgs';
->>>>>>> b98b0deb8f8e53c5ed8aa3503800d40cc9beac14
   user$: Observable<User[]>;
   constructor(private db: AngularFirestore,private afs:AuthService) {
     
@@ -54,7 +44,7 @@ export class FirebaseService {
     this.orgsRef = db.collection<Org>(this.orgDbPath)
     // this.orgsRef = db.collection<Org>(this.dbOrgPath)
     this.users = this.userRef.valueChanges({ idField: 'customID' });
-    // this.orgs = this.orgsRef.valueChanges({idField:'customID'})
+    this.orgs = this.orgsRef.valueChanges({idField:'customID'})
   }
 
   // getItems():Observable<User[]>{
@@ -75,12 +65,14 @@ export class FirebaseService {
     addOrg(org:Org){
     this.orgsRef.add({...org})
     // let uid:string|undefined
-    let user:Observable<User|undefined>
-    let unsubscribe =  this.afs.getUser().subscribe(currUser=>{
-      user = this.getById(currUser!.uid)  
-      user.subscribe(currUserA=>{
-        console.log(currUserA)
-      })
+
+    let unsubscribe =  this.afs.getUser().subscribe(authUser=>{
+     let user = this.getById('user',authUser!.uid)
+      console.log(user)
+        // dbUser?.orgs?.push(org)
+      // this.updateItem('user',dbUser?.uid,dbUser)
+    
+
     })
  
       // let id = currUser.id
@@ -96,14 +88,17 @@ export class FirebaseService {
   // addItem(user: User) {
   //   this.usersRef.add({ ...user });
   // }
-  getById(id: string) {
-    return this.userRef.doc(id).valueChanges();
+  getById(type:string,id: string) {
+    if(type==='user') return this.userRef.doc(id).valueChanges()
+    else return this.orgsRef.doc(id)
   }
-  updateItem(id: string, item: any): Promise<void> {
-    return this.userRef.doc(id).update(item);
+  updateItem(type:string,id: string, item: User | Org): Promise<void> {
+    if(type==='user') return this.userRef.doc(id).update(item as User);
+    return this.orgsRef.doc(id).update(item as Org)
   }
-  delete(id: string): Promise<void> {
-    return this.userRef.doc(id).delete();
+  delete(type:string,id: string): Promise<void> {
+    if(type==='user') return this.userRef.doc(id).delete();
+    return this.orgsRef.doc(id).delete()
   }
 
 
