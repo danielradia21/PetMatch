@@ -33,8 +33,8 @@ export class UserPageComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.route.params.subscribe(({ id }) => {
-      this.firebaseService.getById(id).subscribe((item) => {
-        this.user = item as User;
+      this.firebaseService.getById(id).subscribe((user) => {
+        this.user = user as User;
       });
 
     });

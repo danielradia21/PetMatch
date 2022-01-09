@@ -16,7 +16,7 @@ export class AppComponent {
   ngOnInit(): void {
     // let user = this.userService.createUser();
     let users
-       this.firebaseService.getItems().snapshotChanges().pipe(
+       this.firebaseService.getItems('userRef').snapshotChanges().pipe(
          map(changes =>
            changes.map(c =>
              ({ _id: c.payload.doc.id, ...c.payload.doc.data() })

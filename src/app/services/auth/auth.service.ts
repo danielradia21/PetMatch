@@ -10,7 +10,7 @@ import { UserService } from '../user/users.service';
 export class AuthService {
   public signedIn: Promise<unknown>;
   public usedUser: Observable<unknown>
-  constructor(public auth: AngularFireAuth, public userService: UserService) {
+  constructor(public auth: AngularFireAuth) {
     // this.signedIn = new Promise((subscriber) => {
     //   this.auth.onAuthStateChanged(subscriber);
     // });
@@ -21,11 +21,11 @@ export class AuthService {
   }
 
 
-  async getUser() {
-   this.auth.user.subscribe(user => {
-     console.log(user)
-    })
-    return this.auth.user.subscribe(user => user)
+  getUser() {
+  //  this.auth.user.subscribe(user => {
+  //    console.log(user)
+  //   })
+    return this.auth.user
     // this.usedUser.subscribe(user=>{
     //   console.log(user)
     // })
@@ -54,10 +54,9 @@ export class AuthService {
     }
   }
 
-  async createUser(fullname: string, email: string, password: string): Promise<string> {
+  async createUser(email: string, password: string): Promise<string> {
     try {
       let { user } = await this.auth.createUserWithEmailAndPassword(email, password)
-      await this.userService.newUser(user!.uid, email, fullname);
       return user!.uid;
     } catch (err) {
       throw err;
