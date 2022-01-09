@@ -3,14 +3,18 @@ import { Org } from 'src/app/models/org.model';
 import { FirebaseService } from '../firebase/firebase.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrgService {
-
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService) {}
 
   newOrg(org: Org) {
-    this.firebaseService.addOrg(org)
+    this.firebaseService.addOrg(org);
+  }
+  getOrgById(id: string) {
+    return this.firebaseService.getOrgById(id);
+  }
+  updateOrg(_id: string, org: Org) {
+    this.firebaseService.updateItem(_id, org);
   }
 }
-

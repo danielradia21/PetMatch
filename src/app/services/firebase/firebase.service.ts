@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Injectable, Type } from '@angular/core';
 import {
   Firestore,
@@ -5,6 +6,9 @@ import {
   collection,
   where,
 } from '@angular/fire/firestore';
+=======
+import { Injectable } from '@angular/core';
+>>>>>>> b98b0deb8f8e53c5ed8aa3503800d40cc9beac14
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {
@@ -24,6 +28,7 @@ export class FirebaseService {
   private itemUid$: Subject<string | null>;
   private userRef: AngularFirestoreCollection<User>;
   private orgsRef: AngularFirestoreCollection<Org>
+<<<<<<< HEAD
   // private refs:refs
 
   
@@ -36,6 +41,11 @@ export class FirebaseService {
   private orgs:Observable<Org[]>
   private userDbPath = '/users';
   private orgDbPath = '/orgs'
+=======
+  private items: Observable<User[]>;
+  private dbPath = '/users';
+  private dbOrgPath = '/orgs';
+>>>>>>> b98b0deb8f8e53c5ed8aa3503800d40cc9beac14
   user$: Observable<User[]>;
   constructor(private db: AngularFirestore,private afs:AuthService) {
     
