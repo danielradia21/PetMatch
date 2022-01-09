@@ -1,6 +1,5 @@
 <!-- <div>
   <p>{{ org.name }}</p>
-  <img src="{{ org.imgUrl }}" alt="" />
 </div>
 <div>
   <p>{{ org.description }}</p>
@@ -11,5 +10,45 @@
   <p>{{ org.contact.email }}</p>
   <p>{{ org.contact.website }}</p>
   <p>{{ org.contact.twitter }}</p>
-  <p>{{ org.contact.facebook }}</p>
+  <p>{{ org.contact.facebook }}</p> 
 </div> -->
+<section class="org-edit">
+  <button onClick="()=>editable = !editable">Edit</button>
+  <img src="{{ org.imgUrl }}" alt="" />
+  <form (ngSubmit)="onSubmit(form)" class="org-edit-form" #form="ngForm">
+      <div class="input-field">
+          <input type="text" name="name" placeholder=" " required [(ngModel)]="org.name" autocomplete="off" [disabled]="!editable"/>
+          <span class="floating">{{org.name}}</span>
+      </div>
+      <div class="input-field">
+          <input type="text" name="description" placeholder=" " required [(ngModel)]="org.description" autocomplete="off" [disabled]="!editable"/>
+          <span class="floating">{{org.description}}</span>
+      </div>
+      <div class="input-field">
+          <input type="text" name="location" placeholder=" " required [(ngModel)]="org.location" autocomplete="off" [disabled]="!editable"/>
+          <span class="floating">{{org.location}}</span>
+      </div>
+          <div class="input-field">
+              <input  type="text" name="phone" placeholder=" " required [(ngModel)]="org.contact.phone" autocomplete="off" [disabled]="!editable"/>
+              <span class="floating">{{org.contact.phone}}</span>
+          </div>
+          <div class="input-field">
+              <input ngModel type="email" name="email" placeholder=" " required [(ngModel)]="org.contact.email" autocomplete="off" [disabled]="!editable"/>
+              <span class="floating">{{org.contact.email}}</span>
+          </div>
+          <div class="input-field">
+              <input ngModel type="text" name="website" placeholder=" " [(ngModel)]="org.contact.website" autocomplete="off" [disabled]="!editable"/>
+              <span class="floating">{{org.contact.website}}</span>
+          </div>
+          <div class="input-field">
+              <input ngModel type="text" name="twitter" placeholder=" " [(ngModel)]="org.contact.twitter" autocomplete="off" [disabled]="!editable"/>
+              <span class="floating">{{org.contact.twitter}}</span>
+          </div>
+          <div class="input-field">
+              <input ngModel type="text" name="facebook" placeholder=" " [(ngModel)]="org.contact.facebook" autocomplete="off" [disabled]="!editable"/>
+              <span class="floating">{{org.contact.facebook}}</span>
+          </div>
+      <button>Save</button>
+  </form>
+  
+</section>

@@ -1,10 +1,4 @@
 import { Injectable } from '@angular/core';
-import {
-  Firestore,
-  collectionData,
-  collection,
-  where,
-} from '@angular/fire/firestore';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import {
@@ -22,7 +16,7 @@ export class FirebaseService {
   private orgsRef: AngularFirestoreCollection<Org>
   private items: Observable<User[]>;
   private dbPath = '/users';
-  private dbOrgPath = '/orgs'
+  private dbOrgPath = '/orgs';
   user$: Observable<User[]>;
   constructor(private db: AngularFirestore) {
     this.itemUid$ = new Subject<string | null>();

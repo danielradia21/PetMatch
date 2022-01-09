@@ -1,6 +1,7 @@
 import { Pet } from "./pet.model";
 
 export interface Org {
+    _id: string,
     name: string,
     description: string,
     members: string[],

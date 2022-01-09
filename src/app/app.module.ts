@@ -18,11 +18,8 @@ import { ModalComponent } from './cmps/user/modal/modal.component';
 import { GoogleAuthDirective } from './directives/google-auth.directive';
 import { OrgComponent } from './pages/org/org.component';
 import { AddPetComponent } from './cmps/add-pet/add-pet/add-pet.component';
-<<<<<<< HEAD
 import { OrgDashboardComponent } from './pages/org-dashboard/org-dashboard/org-dashboard.component';
-=======
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
->>>>>>> 64e2297ea2473e73431ee8d677f758f9ceca9439
 
 
 
